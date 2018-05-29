@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Pressupost {
     private JTextField textField1;
@@ -11,5 +13,13 @@ public class Pressupost {
     private JTextArea textArea1;
     private JButton CLOSEButton;
     private JButton SEARCHButton1;
-    private JButton MODIFYButton;
+
+    public Pressupost() {
+        NEWButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
+    }
 }
