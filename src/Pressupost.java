@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -6,7 +8,7 @@ public class Pressupost {
     private JTextField textField1;
     private JTextField textField2;
     private JButton SEARCHButton;
-    private JButton NEWButton;
+    private JButton NEWCustomer;
 
     public JPanel getMainPanel() {
         return MainPanel;
@@ -14,8 +16,8 @@ public class Pressupost {
 
     private JButton SEARCHButton1;
     private JPanel MainPanel;
-    private JButton NEWButton1;
-    private JTable table1;
+    private JButton NEWCompany;
+    private JTable TaulaItems;
     private JButton ADDITEMButton;
     private JButton DELETEITEMButton;
     private JTextArea textArea1;
@@ -24,13 +26,18 @@ public class Pressupost {
     private JPanel PamelButtonSaveCancel;
 
     public Pressupost() {
-        NEWButton.addActionListener(new ActionListener() {
+        NEWCustomer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
             }
         });
-        NEWButton.addActionListener(new ActionListener() {
+
+        /* --------------------------------------------------------- */
+
+        /* --------------------------------------------------------- */
+
+        NEWCustomer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 NewCustomerDialog customerDialog = new NewCustomerDialog();
@@ -43,5 +50,55 @@ public class Pressupost {
                 String adress   = customerDialog.getFieldAdress().getText();
             }
         });
+
+
+        /* --------------------------------------------------------- */
+
+        /* --------------------------------------------------------- */
+        NEWCompany.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                NewCompanyDialog companyDialog = new NewCompanyDialog();
+                companyDialog.setModal(true);
+                companyDialog.pack();
+                companyDialog.setVisible(true);
+
+                // Dades d'una empresa nova
+                String companyName = companyDialog.getFieldNameCompany().getText();
+                String companyAdress   = companyDialog.getFieldNameCompany().getText();
+            }
+        });
+
+        /* --------------------------------------------------------- */
+
+        /* --------------------------------------------------------- */
+
+        TableModel tm = new AbstractTableModel() {
+            @Override
+            public int getRowCount() {
+                return 2;
+            }
+
+            @Override
+            public String getColumnName(int i) {
+                if (i == 0)  return "Quantitat";
+                if (i == 1)  return "Producte";
+                if (i == 2)  return "Preu";
+                if (i == 3)  return "Total";
+                return "";
+            }
+
+            @Override
+            public int getColumnCount() {
+                return 4;
+            }
+
+            @Override
+            public Object getValueAt(int i, int i1) {
+                return "a";
+            }
+        };
+
+        TaulaItems.setModel(tm);
     }
 }
