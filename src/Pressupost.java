@@ -100,5 +100,12 @@ public class Pressupost {
         };
 
         TaulaItems.setModel(tm);
+
+        ADDITEMButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 }

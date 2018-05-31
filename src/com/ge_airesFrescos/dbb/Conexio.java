@@ -1,17 +1,25 @@
-/*package com.ge_airesFrescos.dbb;
-import org.apache.commons.dbcp2.BasicDataSource;
-import java.sql.*;
+package com.ge_airesFrescos.dbb;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class Conexio {
 
-    private static final java.lang.String CADENA_CONNEXIO = "jdbc:mysql://localhost/facturacio?createDatabaseIfNotExist=true&useServerPrepStmts=true";
+    private static final String CADENA_CONNEXIO = "jdbc:mysql://localhost/";
     private static final String USER_BBDD = "root";
     private static final String PASS_BBDD = "test";
 
 
-    private static BasicDataSource pool;
-
-    public static BasicDataSource getPool() {
-        return pool;
+    public synchronized Connection getConectar() {
+        Connection conexion = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            // Establecemos la conexión con la base de datos.
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:10505/transactions?useServerPrepStmts=true", "root", "");
+            return conexion;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return conexion;
     }
-}*/
+}
