@@ -9,6 +9,7 @@ public class Pressupost {
     private JTextField textField2;
     private JButton SEARCHButton;
     private JButton NEWCustomer;
+    private javax.swing.JMenuBar JMenuBar;
 
     public JPanel getMainPanel() {
         return MainPanel;
@@ -43,11 +44,11 @@ public class Pressupost {
                 NewCustomerDialog customerDialog = new NewCustomerDialog();
                 customerDialog.setModal(true);
                 customerDialog.pack();
-                customerDialog.setVisible( true );
+                customerDialog.setVisible(true);
 
                 // Dades d'un client nou
                 String userName = customerDialog.getFieldName().getText();
-                String adress   = customerDialog.getFieldAdress().getText();
+                String adress = customerDialog.getFieldAdress().getText();
             }
         });
 
@@ -65,7 +66,7 @@ public class Pressupost {
 
                 // Dades d'una empresa nova
                 String companyName = companyDialog.getFieldNameCompany().getText();
-                String companyAdress   = companyDialog.getFieldNameCompany().getText();
+                String companyAdress = companyDialog.getFieldNameCompany().getText();
             }
         });
 
@@ -81,10 +82,10 @@ public class Pressupost {
 
             @Override
             public String getColumnName(int i) {
-                if (i == 0)  return "Quantitat";
-                if (i == 1)  return "Producte";
-                if (i == 2)  return "Preu";
-                if (i == 3)  return "Total";
+                if (i == 0) return "Quantitat";
+                if (i == 1) return "Producte";
+                if (i == 2) return "Preu";
+                if (i == 3) return "Total";
                 return "";
             }
 
@@ -101,11 +102,26 @@ public class Pressupost {
 
         TaulaItems.setModel(tm);
 
+        JMenuBar jmb = new JMenuBar();
+        JMenu menu = new JMenu("File");
+        JMenuItem openOption = new JMenuItem("Open");
+        JMenuItem saveOption = new JMenuItem("Save");
+        JMenuItem exitOption = new JMenuItem("Exit");
+        menu.add(openOption);
+        menu.add(saveOption);
+        menu.add(exitOption);
+        jmb.add(menu);
+        this.setJMenuBar(jmb);
+
         ADDITEMButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
+    }
+
+    public void setJMenuBar(JMenuBar JMenuBar) {
+        this.JMenuBar = JMenuBar;
     }
 }

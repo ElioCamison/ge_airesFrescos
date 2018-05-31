@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class Conexio {
 
-    private static final String CADENA_CONNEXIO = "jdbc:mysql://localhost/";
+    private static final String CADENA_CONNEXIO = "jdbc:mysql://localhost:10505";
     private static final String USER_BBDD = "root";
     private static final String PASS_BBDD = "test";
 
@@ -15,7 +15,7 @@ public class Conexio {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             // Establecemos la conexión con la base de datos.
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:10505/transactions?useServerPrepStmts=true", "root", "");
+            conexion = DriverManager.getConnection( CADENA_CONNEXIO +"/ge_airesfrescos?useServerPrepStmts=true", USER_BBDD , PASS_BBDD );
             return conexion;
         } catch (Exception e) {
             e.printStackTrace();
