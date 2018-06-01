@@ -1,7 +1,7 @@
-package com.ge_airesFrescos;
+package com.ge_airesFrescos.GraphicEnvironment;
 
-import com.ge_airesFrescos.NewCompanyDialog;
-import com.ge_airesFrescos.NewCustomerDialog;
+import com.ge_airesFrescos.GraphicEnvironment.NewCompanyDialog;
+import com.ge_airesFrescos.GraphicEnvironment.NewCustomerDialog;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -30,6 +30,7 @@ public class Pressupost {
     private JButton SAVEButton;
     private JButton CANCELButton;
     private JPanel PamelButtonSaveCancel;
+    private JPanel MenuBar;
 
     public Pressupost() {
         NEWCustomer.addActionListener(new ActionListener() {
@@ -101,6 +102,7 @@ public class Pressupost {
 
             @Override
             public Object getValueAt(int i, int i1) {
+
                 return "a";
             }
         };
@@ -116,7 +118,7 @@ public class Pressupost {
         menu.add(saveOption);
         menu.add(exitOption);
         jmb.add(menu);
-        this.setJMenuBar(jmb);
+        MenuBar.add(jmb);
 
         ADDITEMButton.addActionListener(new ActionListener() {
             @Override
