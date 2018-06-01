@@ -1,6 +1,6 @@
 package com.ge_airesFrescos;
 
-import com.ge_airesFrescos.Pressupost;
+import com.ge_airesFrescos.GraphicEnvironment.Pressupost;
 
 import javax.swing.*;
 import java.awt.*;
