@@ -1,12 +1,28 @@
+package com.ge_airesFrescos;
+
 import javax.swing.*;
 import java.awt.event.*;
 
-public class AddItemListDialog extends JDialog {
+public class NewCompanyDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JPanel PanelNewCompany;
+    private JButton NameCompany;
+    private JButton AdressCompany;
 
-    public AddItemListDialog() {
+    public JTextField getFieldNameCompany() {
+        return FieldNameCompany;
+    }
+
+    public JTextField getFieldAdressCompany() {
+        return FieldAdressCompany;
+    }
+
+    private JTextField FieldNameCompany;
+    private JTextField FieldAdressCompany;
+
+    public NewCompanyDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -50,7 +66,7 @@ public class AddItemListDialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        AddItemListDialog dialog = new AddItemListDialog();
+        NewCompanyDialog dialog = new NewCompanyDialog();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

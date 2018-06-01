@@ -1,3 +1,8 @@
+package com.ge_airesFrescos;
+
+import com.ge_airesFrescos.NewCompanyDialog;
+import com.ge_airesFrescos.NewCustomerDialog;
+
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;

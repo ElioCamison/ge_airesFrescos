@@ -1,26 +1,27 @@
+package com.ge_airesFrescos;
+
 import javax.swing.*;
 import java.awt.event.*;
 
-public class NewCompanyDialog extends JDialog {
+public class NewCustomerDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JPanel PanelNewCompany;
-    private JButton NameCompany;
-    private JButton AdressCompany;
+    private JButton nameButton;
+    private JButton adressButton;
 
-    public JTextField getFieldNameCompany() {
-        return FieldNameCompany;
+    public JTextField getFieldName() {
+        return fieldName;
     }
 
-    public JTextField getFieldAdressCompany() {
-        return FieldAdressCompany;
+    public JTextField getFieldAdress() {
+        return fieldAdress;
     }
 
-    private JTextField FieldNameCompany;
-    private JTextField FieldAdressCompany;
+    private JTextField fieldName;
+    private JTextField fieldAdress;
 
-    public NewCompanyDialog() {
+    public NewCustomerDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -64,7 +65,7 @@ public class NewCompanyDialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        NewCompanyDialog dialog = new NewCompanyDialog();
+        NewCustomerDialog dialog = new NewCustomerDialog();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
