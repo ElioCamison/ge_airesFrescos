@@ -1,27 +1,14 @@
-package com.ge_airesFrescos;
+package com.ge_airesFrescos.GraphicEnvironment;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class NewCustomerDialog extends JDialog {
+public class AddItemListDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JButton nameButton;
-    private JButton adressButton;
 
-    public JTextField getFieldName() {
-        return fieldName;
-    }
-
-    public JTextField getFieldAdress() {
-        return fieldAdress;
-    }
-
-    private JTextField fieldName;
-    private JTextField fieldAdress;
-
-    public NewCustomerDialog() {
+    public AddItemListDialog() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -65,7 +52,7 @@ public class NewCustomerDialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        NewCustomerDialog dialog = new NewCustomerDialog();
+        AddItemListDialog dialog = new AddItemListDialog();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
