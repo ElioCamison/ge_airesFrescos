@@ -1,6 +1,8 @@
 package com.ge_airesFrescos.DAO;
 
-public interface BudgetDAO  extends GeneralDAO{
+import com.ge_airesFrescos.ImplementsDAO.BudgetImpDAO;
+
+public interface BudgetDAO  extends GeneralDAO<BudgetImpDAO>{
 
 
 

@@ -1,13 +1,14 @@
 package com.ge_airesFrescos.DAO;
 
-public interface GeneralDAO {
-    void insert(Object p);
+public interface GeneralDAO<T> {
 
-    void update(Object p);
+    void insert(T p);
 
-    void delete(Object p);
+    void update(T p);
 
-    public Object  getAllPressupost(Object p);
+    void delete(T p);
 
-    public Object  getOnePressupost(Object p);
+    public T  getAllPressupost(T p);
+
+    public T  getOnePressupost(T p);
 }

@@ -9,27 +9,27 @@ public class BudgetImpDAO implements BudgetDAO{
 
 
     @Override
-    public void insert(Object p) {
+    public void insert(BudgetImpDAO p) {
 
     }
 
     @Override
-    public void update(Object p) {
+    public void update(BudgetImpDAO p) {
 
     }
 
     @Override
-    public void delete(Object p) {
+    public void delete(BudgetImpDAO p) {
 
     }
 
     @Override
-    public Object getAllPressupost(Object p) {
+    public BudgetImpDAO getAllPressupost(BudgetImpDAO p) {
         return null;
     }
 
     @Override
-    public Object getOnePressupost(Object p) {
+    public BudgetImpDAO getOnePressupost(BudgetImpDAO p) {
         return null;
     }
 }
