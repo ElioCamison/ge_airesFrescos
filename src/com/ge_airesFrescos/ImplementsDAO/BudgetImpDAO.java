@@ -8,6 +8,12 @@ public class BudgetImpDAO implements BudgetDAO{
     private Conexio connection;
 
 
+
+    BudgetImpDAO(){
+
+    }
+
+
     @Override
     public void insert(BudgetImpDAO p) {
 

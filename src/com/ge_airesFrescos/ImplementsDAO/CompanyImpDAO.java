@@ -7,6 +7,11 @@ public class CompanyImpDAO implements CompanyDAO {
 
     private Conexio connection;
 
+    CompanyImpDAO(){
+
+    }
+
+
     @Override
     public void insert(CompanyImpDAO p) {
 

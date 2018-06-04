@@ -7,6 +7,9 @@ public class ProductImpDAO implements ProductDAO{
 
     private Conexio connection;
 
+    ProductImpDAO(){
+
+    }
 
     @Override
     public void insert(BudgetImpDAO p) {
