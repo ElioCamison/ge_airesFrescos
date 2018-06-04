@@ -1,38 +1,33 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.UserDAO;
+import com.ge_airesFrescos.ObjectClass.User;
 
 public class UserImpDAO implements UserDAO {
 
 
-
-    UserImpDAO(){
-
-    }
-
-
     @Override
-    public void insert(UserImpDAO p) {
+    public void insert(User p) {
 
     }
 
     @Override
-    public void update(UserImpDAO p) {
+    public void update(User p) {
 
     }
 
     @Override
-    public void delete(UserImpDAO p) {
+    public void delete(User p) {
 
     }
 
     @Override
-    public UserImpDAO getAll(UserImpDAO p) {
+    public User getAll(User p) {
         return null;
     }
 
     @Override
-    public UserImpDAO getOne(UserImpDAO p) {
+    public User getOne(User p) {
         return null;
     }
 }

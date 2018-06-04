@@ -1,38 +1,35 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.ProductDAO;
+import com.ge_airesFrescos.ObjectClass.Budget;
 import com.ge_airesFrescos.dbb.Conexio;
 
 public class ProductImpDAO implements ProductDAO{
 
     private Conexio connection;
 
-    ProductImpDAO(){
+    @Override
+    public void insert(Budget p) {
 
     }
 
     @Override
-    public void insert(BudgetImpDAO p) {
+    public void update(Budget p) {
 
     }
 
     @Override
-    public void update(BudgetImpDAO p) {
+    public void delete(Budget p) {
 
     }
 
     @Override
-    public void delete(BudgetImpDAO p) {
-
-    }
-
-    @Override
-    public BudgetImpDAO getAll(BudgetImpDAO p) {
+    public Budget getAll(Budget p) {
         return null;
     }
 
     @Override
-    public BudgetImpDAO getOne(BudgetImpDAO p) {
+    public Budget getOne(Budget p) {
         return null;
     }
 }

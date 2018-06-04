@@ -1,39 +1,36 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.CompanyDAO;
+import com.ge_airesFrescos.ObjectClass.Company;
 import com.ge_airesFrescos.dbb.Conexio;
 
 public class CompanyImpDAO implements CompanyDAO {
 
     private Conexio connection;
 
-    CompanyImpDAO(){
-
-    }
-
 
     @Override
-    public void insert(CompanyImpDAO p) {
+    public void insert(Company p) {
 
     }
 
     @Override
-    public void update(CompanyImpDAO p) {
+    public void update(Company p) {
 
     }
 
     @Override
-    public void delete(CompanyImpDAO p) {
+    public void delete(Company p) {
 
     }
 
     @Override
-    public CompanyImpDAO getAll(CompanyImpDAO p) {
+    public Company getAll(Company p) {
         return null;
     }
 
     @Override
-    public CompanyImpDAO getOne(CompanyImpDAO p) {
+    public Company getOne(Company p) {
         return null;
     }
 }

@@ -1,6 +1,7 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.CustomerDAO;
+import com.ge_airesFrescos.ObjectClass.Customer;
 import com.ge_airesFrescos.dbb.Conexio;
 
 public class CustomerImpDAO implements CustomerDAO {
@@ -8,32 +9,28 @@ public class CustomerImpDAO implements CustomerDAO {
     private Conexio connection;
 
 
-    CustomerImpDAO(){
+    @Override
+    public void insert(Customer p) {
 
     }
 
     @Override
-    public void insert(CustomerImpDAO p) {
+    public void update(Customer p) {
 
     }
 
     @Override
-    public void update(CustomerImpDAO p) {
+    public void delete(Customer p) {
 
     }
 
     @Override
-    public void delete(CustomerImpDAO p) {
-
-    }
-
-    @Override
-    public CustomerImpDAO getAll(CustomerImpDAO p) {
+    public Customer getAll(Customer p) {
         return null;
     }
 
     @Override
-    public CustomerImpDAO getOne(CustomerImpDAO p) {
+    public Customer getOne(Customer p) {
         return null;
     }
 }

@@ -1,6 +1,6 @@
 package com.ge_airesFrescos.DAO;
 
-import com.ge_airesFrescos.ImplementsDAO.CustomerImpDAO;
+import com.ge_airesFrescos.ObjectClass.Customer;
 
-public interface CustomerDAO extends GeneralDAO<CustomerImpDAO> {
+public interface CustomerDAO extends GeneralDAO<Customer> {
 }
