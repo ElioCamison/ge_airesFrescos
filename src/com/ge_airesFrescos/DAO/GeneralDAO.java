@@ -1,5 +1,7 @@
 package com.ge_airesFrescos.DAO;
 
+import java.util.List;
+
 public interface GeneralDAO<T> {
 
     void insert(T p);
@@ -8,7 +10,7 @@ public interface GeneralDAO<T> {
 
     void delete(T p);
 
-    public T  getAll(T p);
+    List<T> getAll();
 
-    public T  getOne(T p);
+    T  getOne(int id);
 }

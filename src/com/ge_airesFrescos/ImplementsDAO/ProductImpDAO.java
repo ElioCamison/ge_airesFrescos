@@ -2,34 +2,37 @@ package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.ProductDAO;
 import com.ge_airesFrescos.Model.Budget;
+import com.ge_airesFrescos.Model.Product;
 import com.ge_airesFrescos.dbb.Conexio;
+
+import java.util.List;
 
 public class ProductImpDAO implements ProductDAO{
 
     private Conexio connection;
 
     @Override
-    public void insert(Budget p) {
+    public void insert(Product p) {
 
     }
 
     @Override
-    public void update(Budget p) {
+    public void update(Product p) {
 
     }
 
     @Override
-    public void delete(Budget p) {
+    public void delete(Product p) {
 
     }
 
     @Override
-    public Budget getAll(Budget p) {
+    public List<Product> getAll() {
         return null;
     }
 
     @Override
-    public Budget getOne(Budget p) {
+    public Product getOne(int id) {
         return null;
     }
 }

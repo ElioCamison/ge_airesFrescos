@@ -29,12 +29,14 @@ public class PersonImpDAO implements PersonDAO {
     }
 
     @Override
-    public Person getAll(Person p) {
+    public List<Person> getAll() {
         return null;
     }
 
     @Override
-    public Person getOne(Person p) {
+    public Person getOne(int id) {
         return null;
     }
+
+
 }

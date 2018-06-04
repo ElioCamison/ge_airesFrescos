@@ -3,6 +3,8 @@ package com.ge_airesFrescos.ImplementsDAO;
 import com.ge_airesFrescos.DAO.WorkerDAO;
 import com.ge_airesFrescos.Model.Worker;
 
+import java.util.List;
+
 public class WorkerImpDAO implements WorkerDAO {
 
 
@@ -22,12 +24,13 @@ public class WorkerImpDAO implements WorkerDAO {
     }
 
     @Override
-    public Worker getAll(Worker p) {
+    public List<Worker> getAll() {
         return null;
     }
 
     @Override
-    public Worker getOne(Worker p) {
+    public Worker getOne(int id) {
         return null;
     }
+
 }

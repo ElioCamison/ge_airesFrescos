@@ -29,12 +29,14 @@ public class CustomerImpDAO implements CustomerDAO {
     }
 
     @Override
-    public Customer getAll(Customer p) {
+    public List<Customer> getAll() {
         return null;
     }
 
     @Override
-    public Customer getOne(Customer p) {
+    public Customer getOne(int id) {
         return null;
     }
+
+
 }

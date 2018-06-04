@@ -29,12 +29,13 @@ public class CompanyImpDAO implements CompanyDAO {
     }
 
     @Override
-    public Company getAll(Company p) {
+    public List<Company> getAll() {
         return null;
     }
 
     @Override
-    public Company getOne(Company p) {
+    public Company getOne(int id) {
         return null;
     }
+
 }

@@ -29,12 +29,14 @@ public class BudgetImpDAO implements BudgetDAO{
     }
 
     @Override
-    public Budget getAll(Budget p) {
+    public List<Budget> getAll() {
         return null;
     }
 
     @Override
-    public Budget getOne(Budget p) {
+    public Budget getOne(int id) {
         return null;
     }
+
+
 }
