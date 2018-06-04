@@ -4,9 +4,13 @@ import com.ge_airesFrescos.DAO.CompanyDAO;
 import com.ge_airesFrescos.ObjectClass.Company;
 import com.ge_airesFrescos.dbb.Conexio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CompanyImpDAO implements CompanyDAO {
 
     private Conexio connection;
+    private List<Company> companyList = new ArrayList();
 
 
     @Override
