@@ -20,11 +20,11 @@ public class BudgetImpDAO implements BudgetDAO {
     final String GETALL = "SELECT * FROM pressupost";
     final String GETONE = "SELECT * FROM pressupost WHERE id = ?";
 
-    private Conexio conn;
+    public Conexio conn;
     private List<Budget> budgetList = new ArrayList();
 
 
-    BudgetImpDAO(Conexio conn) {
+    public BudgetImpDAO(Conexio conn) {
         this.conn = conn;
     }
 
