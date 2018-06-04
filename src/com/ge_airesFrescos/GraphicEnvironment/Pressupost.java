@@ -1,15 +1,20 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
+import com.ge_airesFrescos.DAO.BudgetDAO;
 import com.ge_airesFrescos.GraphicEnvironment.NewCompanyDialog;
 import com.ge_airesFrescos.GraphicEnvironment.NewCustomerDialog;
+import com.ge_airesFrescos.ImplementsDAO.*;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pressupost {
+
     private JTextField textField1;
     private JTextField textField2;
     private JButton SEARCHButton;
@@ -31,6 +36,13 @@ public class Pressupost {
     private JButton CANCELButton;
     private JPanel PamelButtonSaveCancel;
     private JPanel MenuBar;
+
+    public List<BudgetImpDAO>   listBudget    = new ArrayList();
+    public List<CompanyImpDAO>  listCompany   = new ArrayList();
+    public List<CustomerImpDAO> listCustomer  = new ArrayList();
+    public List<ProductImpDAO>  listProduc    = new ArrayList();
+    public List<UserImpDAO>     listUser      = new ArrayList();
+
 
     public Pressupost() {
         NEWCustomer.addActionListener(new ActionListener() {
