@@ -7,29 +7,28 @@ public class CustomerImpDAO implements CustomerDAO {
 
     private Conexio connection;
 
-
     @Override
-    public void insert(Object p) {
+    public void insert(CustomerImpDAO p) {
 
     }
 
     @Override
-    public void update(Object p) {
+    public void update(CustomerImpDAO p) {
 
     }
 
     @Override
-    public void delete(Object p) {
+    public void delete(CustomerImpDAO p) {
 
     }
 
     @Override
-    public Object getAllPressupost(Object p) {
+    public CustomerImpDAO getAll(CustomerImpDAO p) {
         return null;
     }
 
     @Override
-    public Object getOnePressupost(Object p) {
+    public CustomerImpDAO getOne(CustomerImpDAO p) {
         return null;
     }
 }

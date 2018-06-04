@@ -8,7 +8,7 @@ public interface GeneralDAO<T> {
 
     void delete(T p);
 
-    public T  getAllPressupost(T p);
+    public T  getAll(T p);
 
-    public T  getOnePressupost(T p);
+    public T  getOne(T p);
 }

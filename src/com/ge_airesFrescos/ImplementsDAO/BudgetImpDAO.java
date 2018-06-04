@@ -24,12 +24,13 @@ public class BudgetImpDAO implements BudgetDAO{
     }
 
     @Override
-    public BudgetImpDAO getAllPressupost(BudgetImpDAO p) {
+    public BudgetImpDAO getAll(BudgetImpDAO p) {
         return null;
     }
 
     @Override
-    public BudgetImpDAO getOnePressupost(BudgetImpDAO p) {
+    public BudgetImpDAO getOne(BudgetImpDAO p) {
         return null;
     }
+
 }

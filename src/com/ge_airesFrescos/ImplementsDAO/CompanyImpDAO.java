@@ -8,27 +8,27 @@ public class CompanyImpDAO implements CompanyDAO {
     private Conexio connection;
 
     @Override
-    public void insert(Object p) {
+    public void insert(CompanyImpDAO p) {
 
     }
 
     @Override
-    public void update(Object p) {
+    public void update(CompanyImpDAO p) {
 
     }
 
     @Override
-    public void delete(Object p) {
+    public void delete(CompanyImpDAO p) {
 
     }
 
     @Override
-    public Object getAllPressupost(Object p) {
+    public CompanyImpDAO getAll(CompanyImpDAO p) {
         return null;
     }
 
     @Override
-    public Object getOnePressupost(Object p) {
+    public CompanyImpDAO getOne(CompanyImpDAO p) {
         return null;
     }
 }

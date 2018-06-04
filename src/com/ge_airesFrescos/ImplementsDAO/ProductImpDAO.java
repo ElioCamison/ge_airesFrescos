@@ -7,28 +7,29 @@ public class ProductImpDAO implements ProductDAO{
 
     private Conexio connection;
 
+
     @Override
-    public void insert(Object p) {
+    public void insert(BudgetImpDAO p) {
 
     }
 
     @Override
-    public void update(Object p) {
+    public void update(BudgetImpDAO p) {
 
     }
 
     @Override
-    public void delete(Object p) {
+    public void delete(BudgetImpDAO p) {
 
     }
 
     @Override
-    public Object getAllPressupost(Object p) {
+    public BudgetImpDAO getAll(BudgetImpDAO p) {
         return null;
     }
 
     @Override
-    public Object getOnePressupost(Object p) {
+    public BudgetImpDAO getOne(BudgetImpDAO p) {
         return null;
     }
 }
