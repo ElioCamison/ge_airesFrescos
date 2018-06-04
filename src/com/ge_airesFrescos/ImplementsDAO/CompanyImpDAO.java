@@ -1,7 +1,7 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.CompanyDAO;
-import com.ge_airesFrescos.ObjectClass.Company;
+import com.ge_airesFrescos.Model.Company;
 import com.ge_airesFrescos.dbb.Conexio;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.ge_airesFrescos.ObjectClass;
+package com.ge_airesFrescos.Model;
 
 public class Customer extends Person {
 

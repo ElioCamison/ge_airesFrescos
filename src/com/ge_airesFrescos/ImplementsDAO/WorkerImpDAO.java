@@ -1,7 +1,7 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.WorkerDAO;
-import com.ge_airesFrescos.ObjectClass.Worker;
+import com.ge_airesFrescos.Model.Worker;
 
 public class WorkerImpDAO implements WorkerDAO {
 

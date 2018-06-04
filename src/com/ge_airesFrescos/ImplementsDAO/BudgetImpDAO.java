@@ -1,7 +1,7 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.BudgetDAO;
-import com.ge_airesFrescos.ObjectClass.Budget;
+import com.ge_airesFrescos.Model.Budget;
 import com.ge_airesFrescos.dbb.Conexio;
 
 import java.util.ArrayList;

@@ -1,8 +1,7 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.CustomerDAO;
-import com.ge_airesFrescos.ObjectClass.Budget;
-import com.ge_airesFrescos.ObjectClass.Customer;
+import com.ge_airesFrescos.Model.Customer;
 import com.ge_airesFrescos.dbb.Conexio;
 
 import java.util.ArrayList;
