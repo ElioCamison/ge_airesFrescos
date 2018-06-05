@@ -1,10 +1,14 @@
 package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.ProductDAO;
+import com.ge_airesFrescos.Exceptions.MySQLException;
 import com.ge_airesFrescos.Model.Budget;
 import com.ge_airesFrescos.Model.Product;
 import com.ge_airesFrescos.dbb.Conexio;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,27 +20,96 @@ public class ProductImpDAO implements ProductDAO {
     final String GETALL = "SELECT * FROM pressupost";
     final String GETONE = "SELECT * FROM pressupost WHERE id = ?";
 
-    private Conexio connection;
+    public Conexio conn;
     private List<Product> productList = new ArrayList();
 
-    ProductImpDAO(Conexio connection){
-        this.connection = connection;
+    ProductImpDAO(Conexio conn){
+        this.conn = conn;
     }
 
 
     @Override
-    public void insert(Product p) {
+    public void insert(Product p) throws MySQLException {
+        PreparedStatement prepStat = null;
+        try {
+            prepStat = conn.getConectar().prepareStatement(INSERT);
+            prepStat.setString(1, p.getName());
+            prepStat.setString(2, p.getDescription());
+            prepStat.setString(3, p.getImage());
+            prepStat.setFloat(4, p.getPrice());
+            prepStat.setInt(5, p.getStock());
+            prepStat.executeUpdate();
 
+            if (prepStat.executeUpdate() == 0) {
+                throw new MySQLException("Puede que no se haya guardado");
+            }
+        } catch (SQLException e) {
+            throw new MySQLException("Error en SQL", e);
+        } finally {
+            if (prepStat != null) {
+                try {
+                    prepStat.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+        }
     }
 
     @Override
-    public void update(Product p) {
-
+    public void update(Product p) throws MySQLException {
+        PreparedStatement prepStat = null;
+        try {
+            prepStat = conn.getConectar().prepareStatement(UPDATE);
+            prepStat.setString(1, p.getName());
+            prepStat.setString(2, p.getDescription());
+            prepStat.setString(3, p.getImage());
+            prepStat.setFloat(4, p.getPrice());
+            prepStat.setInt(5, p.getStock());
+            prepStat.setInt(6, p.getId());
+        } catch (SQLException e) {
+            throw new MySQLException("Error en SQL", e);
+        } finally {
+            if (prepStat != null) {
+                try {
+                    prepStat.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+        }
     }
 
     @Override
-    public void delete(Product p) {
+    public void delete(Product p) throws MySQLException {
+        PreparedStatement prepStat = null;
+        try {
+            prepStat = conn.getConectar().prepareStatement(DELETE);
+            prepStat.setInt(1, p.getId());
+        } catch (SQLException e) {
+            throw new MySQLException("Error en SQL", e);
+        } finally {
+            if (prepStat != null) {
+                try {
+                    prepStat.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+        }
+    }
 
+    private Product convert(ResultSet rs) throws SQLException {
+        int id = Integer.parseInt(rs.getString("id"));
+        String name = rs.getString("name");
+        String description = rs.getString("description");
+        String image = rs.getString("image");
+        float price = Float.parseFloat(rs.getString("price"));
+        int stock = Integer.parseInt(rs.getString("stock"));
+
+        Product product = new Product(id, name, description, image, price, stock);
+
+        return product;
     }
 
     @Override
