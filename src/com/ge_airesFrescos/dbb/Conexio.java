@@ -11,23 +11,29 @@ public class Conexio {
     private static final String PASS_BBDD = "test";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
 
-    public synchronized Connection getConectar() {
-        Connection conexion = null;
-        try {
-            Class.forName(DRIVER);
-            // Establecemos la conexión con la base de datos.
-            conexion = DriverManager.getConnection( CADENA_CONNEXIO +"/ge_airesfrescos?useServerPrepStmts=true", USER_BBDD , PASS_BBDD );
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (SQLException e){
+    static Connection conexion = null;
 
+    public synchronized Connection getConectar() {
+        if (conexion == null) {
+            try {
+                Class.forName(DRIVER);
+                // Establecemos la conexión con la base de datos.
+                conexion = DriverManager.getConnection( CADENA_CONNEXIO +"/ge_airesfrescos?useServerPrepStmts=true", USER_BBDD , PASS_BBDD );
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (SQLException e){
+
+                    }
                 }
             }
+            return conexion;
         }
+
         return conexion;
+
     }
 }

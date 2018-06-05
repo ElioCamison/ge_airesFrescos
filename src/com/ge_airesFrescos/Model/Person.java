@@ -5,16 +5,19 @@ public class Person {
     private int id;
     private String name;
     private String surname;
+    private String adress;
     private String telephone;
     private String email;
 
-    public Person(int id, String name, String surname, String telephone, String email) {
+    public Person(int id, String name, String surname, String adress, String telephone, String email) {
         this.id = id;
         this.surname = name;
         this.surname = surname;
+        this.surname = adress;
         this.telephone = telephone;
         this.email = email;
     }
+
 
     public String getName() {
         return name;
@@ -26,6 +29,10 @@ public class Person {
 
     public String getSurname() {
         return surname;
+    }
+
+    public String getAdress() {
+        return adress;
     }
 
     public String getTelephone() {
@@ -44,6 +51,10 @@ public class Person {
         this.surname = surname;
     }
 
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
@@ -58,6 +69,7 @@ public class Person {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", adress='" + adress + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 '}';

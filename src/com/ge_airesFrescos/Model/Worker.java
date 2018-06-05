@@ -6,8 +6,8 @@ public class Worker extends Person{
     private String password;
     private int id_department;
 
-    public Worker(int id, String name, String surname, String telephone, String email, String user, String password, int id_department) {
-        super(id, name, surname, telephone, email);
+    public Worker(int id, String name, String surname, String adress, String telephone, String email, String user, String password, int id_department) {
+        super(id, name, surname, adress, telephone, email);
         this.user = user;
         this.password = password;
         this.id_department = id_department;

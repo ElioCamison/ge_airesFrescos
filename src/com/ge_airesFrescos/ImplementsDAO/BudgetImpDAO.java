@@ -145,7 +145,7 @@ public class BudgetImpDAO implements BudgetDAO {
                 }
             }
         }
-        return null;
+        return budgetList;
     }
 
     @Override
