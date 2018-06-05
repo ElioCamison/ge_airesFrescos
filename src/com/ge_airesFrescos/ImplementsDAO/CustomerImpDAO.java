@@ -13,16 +13,17 @@ import java.util.List;
 
 public class CustomerImpDAO implements CustomerDAO {
 
-    final String INSERT = "INSERT INTO pressupost(name, surname, adress, telephone, email, user, password) VALUES(?, ?, ?, ?, ?, ?, ?)";
-    final String UPDATE = "UPDATE pressupost SET nom = ?, cognom = ?, adreça = ?, telefon = ?, email = ?, user = ?, password = ? WHERE id = ?";
-    final String DELETE = "DELETE FROM pressupost WHERE id = ?";
-    final String GETALL = "SELECT * FROM pressupost";
-    final String GETONE = "SELECT * FROM pressupost WHERE id = ?";
+    final String INSERT_old = "INSERT INTO client(name, surname, adress, telephone, email, user, password) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    final String INSERT = "INSERT INTO client(name) VALUES(?)";
+    final String UPDATE = "UPDATE client SET nom = ?, cognom = ?, adreça = ?, telefon = ?, email = ?, user = ?, password = ? WHERE id = ?";
+    final String DELETE = "DELETE FROM client WHERE id = ?";
+    final String GETALL = "SELECT * FROM client";
+    final String GETONE = "SELECT * FROM client WHERE id = ?";
 
     private Conexio conn;
     private List<Customer> customerList = new ArrayList();
 
-    CustomerImpDAO(Conexio conn) {
+    public CustomerImpDAO(Conexio conn) {
         this.conn = conn;
     }
 
@@ -33,14 +34,14 @@ public class CustomerImpDAO implements CustomerDAO {
         try {
             prepStat = conn.getConectar().prepareStatement(INSERT);
             prepStat.setString(1, p.getName());
-            prepStat.setString(2, p.getSurname());
+            /*prepStat.setString(2, p.getSurname());
             prepStat.setString(3, p.getAdress());
             prepStat.setString(4, p.getTelephone());
             prepStat.setString(5, p.getEmail());
             prepStat.setString(6, p.getUser());
-            prepStat.setString(7, p.getPassword());
-            prepStat.executeUpdate();
-            if (prepStat.executeUpdate() == 0) {
+            prepStat.setString(7, p.getPassword());*/
+            int result = prepStat.executeUpdate();
+            if (result == 0) {
                 throw new MySQLException("Puede que no se haya guardado");
             }
         } catch (SQLException e) {

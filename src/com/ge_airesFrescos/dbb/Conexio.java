@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexio {
+public class Conexio implements AutoCloseable {
 
     private static final String CADENA_CONNEXIO = "jdbc:mysql://localhost:10505";
     private static final String USER_BBDD = "root";
-    private static final String PASS_BBDD = "test";
+    private static final String PASS_BBDD = "";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
 
     static Connection conexion = null;
@@ -21,19 +21,18 @@ public class Conexio {
                 conexion = DriverManager.getConnection( CADENA_CONNEXIO +"/ge_airesfrescos?useServerPrepStmts=true", USER_BBDD , PASS_BBDD );
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                if (conexion != null) {
-                    try {
-                        conexion.close();
-                    } catch (SQLException e){
-
-                    }
-                }
             }
             return conexion;
         }
 
         return conexion;
 
+    }
+
+    @Override
+    public void close() throws Exception {
+        if(conexion != null){
+            conexion.close();
+        }
     }
 }

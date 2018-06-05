@@ -1,8 +1,5 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
-import com.ge_airesFrescos.DAO.BudgetDAO;
-import com.ge_airesFrescos.GraphicEnvironment.NewCompanyDialog;
-import com.ge_airesFrescos.GraphicEnvironment.NewCustomerDialog;
 import com.ge_airesFrescos.ImplementsDAO.*;
 
 import javax.swing.*;
@@ -41,7 +38,7 @@ public class Pressupost {
     public List<CompanyImpDAO>  listCompany   = new ArrayList();
     public List<CustomerImpDAO> listCustomer  = new ArrayList();
     public List<ProductImpDAO>  listProduc    = new ArrayList();
-    public List<UserImpDAO>     listUser      = new ArrayList();
+    public List<WorkerImpDAO>     listUser      = new ArrayList();
 
 
     public Pressupost() {

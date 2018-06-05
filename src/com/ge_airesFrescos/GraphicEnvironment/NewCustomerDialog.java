@@ -1,7 +1,14 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
+import com.ge_airesFrescos.Exceptions.MySQLException;
+import com.ge_airesFrescos.ImplementsDAO.CustomerImpDAO;
+import com.ge_airesFrescos.Model.Customer;
+import com.ge_airesFrescos.dbb.Conexio;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class NewCustomerDialog extends JDialog {
     private JPanel contentPane;
@@ -28,7 +35,9 @@ public class NewCustomerDialog extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+                String name = fieldName.getText();
+                String addres = fieldAdress.getText();
+                onOK(name, addres);
             }
         });
 
@@ -54,8 +63,27 @@ public class NewCustomerDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() {
+    private void onOK(String name, String address){
         // add your code here
+        //todo validar informacion
+        Customer c = new Customer(-1,name,"",address,"","","","");
+        if(true){
+            Conexio con = new Conexio();
+            try{
+                CustomerImpDAO cuidao = new CustomerImpDAO(con);
+                cuidao.insert(c);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            } finally {
+                if(con != null){
+                    try {
+                        con.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
         dispose();
     }
 

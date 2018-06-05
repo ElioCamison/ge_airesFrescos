@@ -11,9 +11,9 @@ public class Person {
 
     public Person(int id, String name, String surname, String adress, String telephone, String email) {
         this.id = id;
-        this.surname = name;
+        this.name = name;
         this.surname = surname;
-        this.surname = adress;
+        this.adress = adress;
         this.telephone = telephone;
         this.email = email;
     }
