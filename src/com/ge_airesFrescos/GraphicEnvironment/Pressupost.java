@@ -36,10 +36,8 @@ public class Pressupost {
 
     public List<BudgetImpDAO>   listBudget    = new ArrayList();
     public List<CompanyImpDAO>  listCompany   = new ArrayList();
-    public List<CustomerImpDAO> listCustomer  = new ArrayList();
+    public List<PersonImpDAO>   listPerson  = new ArrayList();
     public List<ProductImpDAO>  listProduc    = new ArrayList();
-    public List<WorkerImpDAO>     listUser      = new ArrayList();
-
 
     public Pressupost() {
         NEWCustomer.addActionListener(new ActionListener() {
