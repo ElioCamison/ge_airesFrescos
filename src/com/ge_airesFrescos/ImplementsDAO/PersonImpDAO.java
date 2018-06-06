@@ -104,8 +104,6 @@ public class PersonImpDAO implements PersonDAO {
     }
 
     private Person convert(ResultSet rs) throws SQLException {
-        int id = Integer.parseInt(rs.getString("id"));
-
         String name = rs.getString("name");
         String surname = rs.getString("surname");
         String address = rs.getString("address");
@@ -152,8 +150,39 @@ public class PersonImpDAO implements PersonDAO {
     }
 
     @Override
-    public Person getOne(int id) {
-        return null;
+    public Person getOne(int id) throws MySQLException {
+
+        PreparedStatement prepStat = null;
+        ResultSet rs = null;
+        Person person = null;
+        try {
+            prepStat = conn.getConectar().prepareStatement(GETONE);
+            prepStat.setInt(1, id);
+            rs = prepStat.executeQuery();
+            if (rs.next()) {
+                person = convert(rs);
+            } else {
+                throw new MySQLException("No se ha encontrado registros.");
+            }
+        } catch (SQLException e) {
+            throw new MySQLException("Error en SQL", e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+            if (prepStat != null) {
+                try {
+                    prepStat.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+        }
+        return person;
     }
 
 

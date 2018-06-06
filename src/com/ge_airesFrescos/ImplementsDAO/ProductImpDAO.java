@@ -106,7 +106,7 @@ public class ProductImpDAO implements ProductDAO {
         float price = Float.parseFloat(rs.getString("price"));
         int stock = Integer.parseInt(rs.getString("stock"));
 
-        Product product = new Product(id, name, description, image, price, stock);
+        Product product = new Product(name, description, image, price, stock);
 
         return product;
     }

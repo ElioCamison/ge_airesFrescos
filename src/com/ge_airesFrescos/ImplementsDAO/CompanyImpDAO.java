@@ -90,9 +90,8 @@ public class CompanyImpDAO implements CompanyDAO {
     }
 
     private Company convert(ResultSet rs) throws SQLException {
-        int id = Integer.parseInt(rs.getString("id"));
         String nom = rs.getString("nom");
-        Company company = new Company(id, nom);
+        Company company = new Company(nom);
         return company;
     }
 

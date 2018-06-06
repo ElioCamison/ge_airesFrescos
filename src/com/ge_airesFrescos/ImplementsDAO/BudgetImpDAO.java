@@ -104,7 +104,6 @@ public class BudgetImpDAO implements BudgetDAO {
 
 
     private Budget convert(ResultSet rs) throws SQLException {
-        int id = Integer.parseInt(rs.getString("id"));
         int id_producte = Integer.parseInt(rs.getString("id_producte"));
         int id_treballador = Integer.parseInt(rs.getString("id_treballador"));
         int id_empresa = Integer.parseInt(rs.getString("id_empresa"));
@@ -112,7 +111,7 @@ public class BudgetImpDAO implements BudgetDAO {
         float total = Float.parseFloat(rs.getString("total"));
         String data = rs.getString("data");
         String observacions = rs.getString("observacions");
-        Budget budget = new Budget(id, id_producte, id_treballador, id_empresa, id_client, total, data, observacions);
+        Budget budget = new Budget(id_producte, id_treballador, id_empresa, id_client, total, data, observacions);
         return budget;
     }
 
