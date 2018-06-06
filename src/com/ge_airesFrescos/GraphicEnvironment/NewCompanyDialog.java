@@ -1,5 +1,11 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
+import com.ge_airesFrescos.ImplementsDAO.CompanyImpDAO;
+import com.ge_airesFrescos.ImplementsDAO.PersonImpDAO;
+import com.ge_airesFrescos.Model.Company;
+import com.ge_airesFrescos.Model.Person;
+import com.ge_airesFrescos.dbb.Conexio;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -12,15 +18,15 @@ public class NewCompanyDialog extends JDialog {
     private JButton AdressCompany;
 
     public JTextField getFieldNameCompany() {
-        return FieldNameCompany;
+        return fieldNameCompany;
     }
 
     public JTextField getFieldAdressCompany() {
-        return FieldAdressCompany;
+        return fieldAdressCompany;
     }
 
-    private JTextField FieldNameCompany;
-    private JTextField FieldAdressCompany;
+    private JTextField fieldNameCompany;
+    private JTextField fieldAdressCompany;
 
     public NewCompanyDialog() {
         setContentPane(contentPane);
@@ -29,7 +35,10 @@ public class NewCompanyDialog extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onOK();
+
+                String name    = fieldNameCompany.getName();
+                String address = fieldAdressCompany.getName();
+                onOK(name,address);
             }
         });
 
@@ -55,8 +64,18 @@ public class NewCompanyDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() {
+    private void onOK(String name, String address) {
         // add your code here
+        Company company = new Company(name,address);
+        if(true){
+            Conexio con = new Conexio();
+            try {
+                CompanyImpDAO companyImpDAO = new CompanyImpDAO(con);
+                companyImpDAO.insert(company);
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
         dispose();
     }
 

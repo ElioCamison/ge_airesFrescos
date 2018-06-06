@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CompanyImpDAO implements CompanyDAO {
 
-    final String INSERT = "INSERT INTO empresa(nom) VALUES(?)";
+    final String INSERT = "INSERT INTO empresa(nom, adreca) VALUES(?,?)";
     final String UPDATE = "UPDATE empresa SET nom = ?";
     final String DELETE = "DELETE FROM empresa WHERE id = ?";
     final String GETALL = "SELECT * FROM empresa";
@@ -23,7 +23,7 @@ public class CompanyImpDAO implements CompanyDAO {
     private Conexio conn;
     private List<Company> companyList = new ArrayList();
 
-    CompanyImpDAO(Conexio conn) {
+    public CompanyImpDAO(Conexio conn) {
         this.conn = conn;
     }
 
@@ -34,6 +34,7 @@ public class CompanyImpDAO implements CompanyDAO {
         try {
             prepStat = conn.getConectar().prepareStatement(INSERT);
             prepStat.setString(1, p.getName());
+            prepStat.setString(2, p.getAddress());
             int result = prepStat.executeUpdate();
             if (result == 0) {
                 throw new MySQLException("Puede que no se haya guardado");
@@ -57,6 +58,7 @@ public class CompanyImpDAO implements CompanyDAO {
         try {
             prepStat = conn.getConectar().prepareStatement(UPDATE);
             prepStat.setString(1, p.getName());
+            prepStat.setString(2, p.getAddress());
         } catch (SQLException e) {
             throw new MySQLException("Error en SQL", e);
         } finally {
@@ -90,8 +92,9 @@ public class CompanyImpDAO implements CompanyDAO {
     }
 
     private Company convert(ResultSet rs) throws SQLException {
-        String nom = rs.getString("nom");
-        Company company = new Company(nom);
+        String name = rs.getString("nom");
+        String address = rs.getString("address");
+        Company company = new Company(name,address);
         return company;
     }
 

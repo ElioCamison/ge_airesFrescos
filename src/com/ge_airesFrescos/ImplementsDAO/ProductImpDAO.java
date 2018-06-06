@@ -23,7 +23,7 @@ public class ProductImpDAO implements ProductDAO {
     public Conexio conn;
     private List<Product> productList = new ArrayList();
 
-    ProductImpDAO(Conexio conn){
+    public ProductImpDAO(Conexio conn){
         this.conn = conn;
     }
 
