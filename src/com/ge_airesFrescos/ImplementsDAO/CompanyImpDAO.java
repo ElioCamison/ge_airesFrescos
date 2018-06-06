@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CompanyImpDAO implements CompanyDAO {
 
-    final String INSERT = "INSERT INTO empresa(nom, adreca) VALUES(?,?)";
+    final String INSERT = "INSERT INTO empresa(name, address) VALUES(?, ?)";
     final String UPDATE = "UPDATE empresa SET nom = ?";
     final String DELETE = "DELETE FROM empresa WHERE id = ?";
     final String GETALL = "SELECT * FROM empresa";
