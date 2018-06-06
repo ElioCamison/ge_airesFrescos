@@ -36,8 +36,8 @@ public class NewCompanyDialog extends JDialog {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                String name    = fieldNameCompany.getName();
-                String address = fieldAdressCompany.getName();
+                String name    = fieldNameCompany.getText();
+                String address = fieldAdressCompany.getText();
                 onOK(name,address);
             }
         });

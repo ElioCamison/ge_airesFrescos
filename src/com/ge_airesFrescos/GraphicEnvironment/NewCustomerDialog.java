@@ -81,14 +81,12 @@ public class NewCustomerDialog extends JDialog {
         // add your code here
         //todo validar informacion
         Person person = new Person(name,surname,address,telephone,email,user,password,type);
-        if(true){
-            Conexio con = new Conexio();
-            try {
-                PersonImpDAO cuidao = new PersonImpDAO(con);
-                cuidao.insert(person);
-            } catch (Exception ex){
-                ex.printStackTrace();
-            }
+        Conexio con = new Conexio();
+        try {
+            PersonImpDAO personImpDAO = new PersonImpDAO(con);
+            personImpDAO.insert(person);
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
         dispose();
     }
