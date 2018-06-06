@@ -11,8 +11,6 @@ public class NewCustomerDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JButton nameButton;
-    private JButton adressButton;
 
     public JTextField getFieldName() {
         return fieldName;
@@ -24,6 +22,19 @@ public class NewCustomerDialog extends JDialog {
 
     private JTextField fieldName;
     private JTextField fieldAdress;
+    private JTextField fieldSurname;
+    private JLabel labelAddress;
+    private JPanel labelName;
+    private JLabel surnameLabel;
+    private JTextField fieldTelephone;
+    private JTextField fieldEmail;
+    private JTextField fieldPassword;
+    private JLabel tlfLabel;
+    private JLabel emailLabel;
+    private JLabel PasswordLabel;
+    private JTextField fieldUser;
+    private JLabel userLabel;
+    private JTextField fieldType;
 
     public NewCustomerDialog() {
         setContentPane(contentPane);
@@ -32,9 +43,15 @@ public class NewCustomerDialog extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String name = fieldName.getText();
-                String addres = fieldAdress.getText();
-                onOK(name, addres);
+                String name      = fieldName.getText();
+                String surname   = fieldSurname.getText();
+                String addres    = fieldAdress.getText();
+                String telephone = fieldTelephone.getText();
+                String email = fieldEmail.getText();
+                String user = fieldUser.getText();
+                String password = fieldPassword.getText();
+                String type = fieldType.getText();
+                onOK(name,surname, addres, telephone, email, user, password, type);
             }
         });
 
@@ -60,10 +77,10 @@ public class NewCustomerDialog extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK(String name, String address){
+    private void onOK(String name, String surname, String address, String telephone, String email, String user, String password, String type){
         // add your code here
         //todo validar informacion
-        Person person = new Person(1,name,"",address,"","","","","");
+        Person person = new Person(name,surname,address,telephone,email,user,password,type);
         if(true){
             Conexio con = new Conexio();
             try {
@@ -86,5 +103,9 @@ public class NewCustomerDialog extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

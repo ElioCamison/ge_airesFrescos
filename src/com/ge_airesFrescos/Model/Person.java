@@ -24,6 +24,17 @@ public class Person {
         this.type = type;
     }
 
+    public Person(String name, String surname, String adress, String telephone, String email, String password, String user, String type) {
+        this.name = name;
+        this.surname = surname;
+        this.adress = adress;
+        this.telephone = telephone;
+        this.email = email;
+        this.password = password;
+        this.user = user;
+        this.type = type;
+    }
+
     public int getId() {
         return id;
     }
