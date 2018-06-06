@@ -40,9 +40,8 @@ public class BudgetImpDAO implements BudgetDAO {
             prepStat.setFloat(5, p.getTotal());
             prepStat.setString(6, p.getData());
             prepStat.setString(7, p.getObservacions());
-            prepStat.executeUpdate();
-
-            if (prepStat.executeUpdate() == 0) {
+            int result = prepStat.executeUpdate();
+            if (result == 0) {
                 throw new MySQLException("Puede que no se haya guardado");
             }
         } catch (SQLException e) {

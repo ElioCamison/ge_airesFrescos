@@ -24,6 +24,16 @@ public class Budget {
         this.observacions = observacions;
     }
 
+    public Budget(int id_producte, int id_treballador, int id_empresa, int id_client, float total, String data, String observacions) {
+        this.id_producte = id_producte;
+        this.id_treballador = id_treballador;
+        this.id_empresa = id_empresa;
+        this.id_client = id_client;
+        this.total = total;
+        this.data = data;
+        this.observacions = observacions;
+    }
+
     @Override
     public String toString() {
         return "Budget{" +

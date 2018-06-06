@@ -14,11 +14,11 @@ import java.util.List;
 
 public class ProductImpDAO implements ProductDAO {
 
-    final String INSERT = "INSERT INTO pressupost(name, description, image, price, stock) VALUES(?, ?, ?, ?, ?)";
-    final String UPDATE = "UPDATE pressupost SET name = ?, description = ?, image = ?, price = ?, stock = ? WHERE id = ?";
-    final String DELETE = "DELETE FROM pressupost WHERE id = ?";
-    final String GETALL = "SELECT * FROM pressupost";
-    final String GETONE = "SELECT * FROM pressupost WHERE id = ?";
+    final String INSERT = "INSERT INTO producte(name, description, image, price, stock) VALUES(?, ?, ?, ?, ?)";
+    final String UPDATE = "UPDATE producte SET name = ?, description = ?, image = ?, price = ?, stock = ? WHERE id = ?";
+    final String DELETE = "DELETE FROM producte WHERE id = ?";
+    final String GETALL = "SELECT * FROM producte";
+    final String GETONE = "SELECT * FROM producte WHERE id = ?";
 
     public Conexio conn;
     private List<Product> productList = new ArrayList();
@@ -38,9 +38,8 @@ public class ProductImpDAO implements ProductDAO {
             prepStat.setString(3, p.getImage());
             prepStat.setFloat(4, p.getPrice());
             prepStat.setInt(5, p.getStock());
-            prepStat.executeUpdate();
-
-            if (prepStat.executeUpdate() == 0) {
+            int result = prepStat.executeUpdate();
+            if (result == 0) {
                 throw new MySQLException("Puede que no se haya guardado");
             }
         } catch (SQLException e) {
@@ -113,12 +112,71 @@ public class ProductImpDAO implements ProductDAO {
     }
 
     @Override
-    public List<Product> getAll() {
-        return null;
+    public List<Product> getAll() throws MySQLException {
+        PreparedStatement prepStat = null;
+        ResultSet rs = null;
+        try {
+            prepStat = conn.getConectar().prepareStatement(GETALL);
+            rs = prepStat.executeQuery();
+            while (rs.next()) {
+                productList.add(convert(rs));
+            }
+        } catch (SQLException e) {
+            throw new MySQLException("Error en SQL", e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+            if (prepStat != null) {
+                try {
+                    prepStat.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+        }
+        return productList;
     }
 
+
     @Override
-    public Product getOne(int id) {
-        return null;
+    public Product getOne(int id) throws MySQLException {
+
+        PreparedStatement prepStat = null;
+        ResultSet rs = null;
+        Product product = null;
+        try {
+            prepStat = conn.getConectar().prepareStatement(GETONE);
+            prepStat.setInt(1, id);
+            rs = prepStat.executeQuery();
+            if (rs.next()) {
+                product = convert(rs);
+            } else {
+                throw new MySQLException("No se ha encontrado registros.");
+            }
+        } catch (SQLException e) {
+            throw new MySQLException("Error en SQL", e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+            if (prepStat != null) {
+                try {
+                    prepStat.close();
+                } catch (SQLException e) {
+                    throw new MySQLException("Error en SQL", e);
+                }
+            }
+        }
+        return product;
     }
+
 }

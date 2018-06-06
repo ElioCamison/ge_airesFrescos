@@ -14,11 +14,11 @@ import java.util.List;
 
 public class CompanyImpDAO implements CompanyDAO {
 
-    final String INSERT = "INSERT INTO pressupost(nom) VALUES(?)";
-    final String UPDATE = "UPDATE pressupost SET nom = ?";
-    final String DELETE = "DELETE FROM pressupost WHERE id = ?";
-    final String GETALL = "SELECT * FROM pressupost";
-    final String GETONE = "SELECT * FROM pressupost WHERE id = ?";
+    final String INSERT = "INSERT INTO empresa(nom) VALUES(?)";
+    final String UPDATE = "UPDATE empresa SET nom = ?";
+    final String DELETE = "DELETE FROM empresa WHERE id = ?";
+    final String GETALL = "SELECT * FROM empresa";
+    final String GETONE = "SELECT * FROM empresa WHERE id = ?";
 
     private Conexio conn;
     private List<Company> companyList = new ArrayList();
@@ -34,8 +34,8 @@ public class CompanyImpDAO implements CompanyDAO {
         try {
             prepStat = conn.getConectar().prepareStatement(INSERT);
             prepStat.setString(1, p.getName());
-            prepStat.executeUpdate();
-            if (prepStat.executeUpdate() == 0) {
+            int result = prepStat.executeUpdate();
+            if (result == 0) {
                 throw new MySQLException("Puede que no se haya guardado");
             }
         } catch (SQLException e) {
