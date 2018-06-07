@@ -11,6 +11,7 @@ public class AddItemDialog extends JDialog {
     private JSpinner QuantitatSpinner;
     private JLabel quantitatLabel;
     private JPanel nameLabel;
+    public boolean ok = false;
 
     public AddItemDialog() {
         setContentPane(addItemPanel);
@@ -46,12 +47,13 @@ public class AddItemDialog extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
+        ok = true;
         dispose();
     }
 
     private void onCancel() {
         // add your code here if necessary
+        ok = false;
         dispose();
     }
 

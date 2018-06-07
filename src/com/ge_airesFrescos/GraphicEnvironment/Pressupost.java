@@ -3,6 +3,7 @@ package com.ge_airesFrescos.GraphicEnvironment;
 import com.ge_airesFrescos.Exceptions.MySQLException;
 import com.ge_airesFrescos.ImplementsDAO.*;
 import com.ge_airesFrescos.Model.Person;
+import com.ge_airesFrescos.Model.Product;
 import com.ge_airesFrescos.dbb.Conexio;
 
 import javax.swing.*;
@@ -40,10 +41,11 @@ public class Pressupost {
     public List<BudgetImpDAO>   listBudget    = new ArrayList();
     public List<CompanyImpDAO>  listCompany   = new ArrayList();
     public List<Person>   listPerson  = new ArrayList();
-    public List<ProductImpDAO>  listProduc    = new ArrayList();
+    public List<Product>  listProduc    = new ArrayList();
+    Conexio con = new Conexio();
 
     public Pressupost() {
-        Conexio con = new Conexio();
+
         PersonImpDAO personImpDAO = new PersonImpDAO(con);
 
         try {
@@ -103,6 +105,14 @@ public class Pressupost {
 
         /* --------------------------------------------------------- */
 
+
+        ProductImpDAO productImpDAO = new ProductImpDAO(con);
+        try {
+            listProduc =  productImpDAO.getAll();
+        } catch (MySQLException e) {
+            e.printStackTrace();
+        }
+
         TableModel tm = new AbstractTableModel() {
             @Override
             public int getRowCount() {
@@ -120,8 +130,12 @@ public class Pressupost {
 
             @Override
             public int getColumnCount() {
+
                 return 4;
             }
+
+
+
 
             @Override
             public Object getValueAt(int i, int i1) {
@@ -138,6 +152,9 @@ public class Pressupost {
                 companyDialog.setModal(true);
                 companyDialog.pack();
                 companyDialog.setVisible(true);
+                if (companyDialog.ok) {
+
+                }
             }
         });
 
