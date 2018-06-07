@@ -1,6 +1,9 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
+import com.ge_airesFrescos.Exceptions.MySQLException;
 import com.ge_airesFrescos.ImplementsDAO.*;
+import com.ge_airesFrescos.Model.Person;
+import com.ge_airesFrescos.dbb.Conexio;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -12,7 +15,6 @@ import java.util.List;
 
 public class Pressupost {
 
-    private JTextField textField1;
     private JTextField textField2;
     private JButton SEARCHButton;
     private JButton NEWCustomer;
@@ -33,13 +35,27 @@ public class Pressupost {
     private JButton CANCELButton;
     private JPanel PamelButtonSaveCancel;
     private JPanel MenuBar;
+    private JComboBox searchCustomer;
 
     public List<BudgetImpDAO>   listBudget    = new ArrayList();
     public List<CompanyImpDAO>  listCompany   = new ArrayList();
-    public List<PersonImpDAO>   listPerson  = new ArrayList();
+    public List<Person>   listPerson  = new ArrayList();
     public List<ProductImpDAO>  listProduc    = new ArrayList();
 
     public Pressupost() {
+        Conexio con = new Conexio();
+        PersonImpDAO personImpDAO = new PersonImpDAO(con);
+
+        try {
+            listPerson = personImpDAO.getAll();
+        } catch (MySQLException e) {
+            e.printStackTrace();
+        }
+
+        for(Person lp : listPerson){
+            searchCustomer.addItem(lp.getName());
+        }
+
         NEWCustomer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -95,8 +111,8 @@ public class Pressupost {
 
             @Override
             public String getColumnName(int i) {
-                if (i == 0) return "Quantitat";
-                if (i == 1) return "Producte";
+                if (i == 0) return "Producte";
+                if (i == 1) return "Quantitat";
                 if (i == 2) return "Preu";
                 if (i == 3) return "Total";
                 return "";
@@ -115,24 +131,16 @@ public class Pressupost {
         };
 
         TaulaItems.setModel(tm);
-
-        JMenuBar jmb = new JMenuBar();
-        JMenu menu = new JMenu("File");
-        JMenuItem openOption = new JMenuItem("Open");
-        JMenuItem saveOption = new JMenuItem("Save");
-        JMenuItem exitOption = new JMenuItem("Exit");
-        menu.add(openOption);
-        menu.add(saveOption);
-        menu.add(exitOption);
-        jmb.add(menu);
-        MenuBar.add(jmb);
-
         ADDITEMButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-
+            public void actionPerformed(ActionEvent actionEvent) {
+                AddItemDialog companyDialog = new AddItemDialog();
+                companyDialog.setModal(true);
+                companyDialog.pack();
+                companyDialog.setVisible(true);
             }
         });
+
     }
 
     public void setJMenuBar(JMenuBar JMenuBar) {
