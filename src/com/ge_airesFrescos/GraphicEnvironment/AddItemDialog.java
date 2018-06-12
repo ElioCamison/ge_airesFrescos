@@ -76,13 +76,14 @@ public class AddItemDialog extends JDialog {
 
 
     private void onOK() {
-        int valueItem = comboboxNameItem.getSelectedIndex();
+        int valueItem = comboboxNameItem.getSelectedIndex()+1;
         ProductImpDAO productImpDAO = new ProductImpDAO(con);
         try {
             productList.add(productImpDAO.getOne(valueItem));
         } catch (MySQLException e) {
             e.printStackTrace();
         }
+
         ok = true;
         dispose();
     }
@@ -98,5 +99,9 @@ public class AddItemDialog extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    public List<Product> getProductList() {
+        return productList;
     }
 }

@@ -66,6 +66,10 @@ public class ProductImpDAO implements ProductDAO {
             prepStat.setFloat(4, p.getPrice());
             prepStat.setInt(5, p.getStock());
             prepStat.setInt(6, p.getId());
+            int result = prepStat.executeUpdate();
+            if (result == 0) {
+                throw new MySQLException("Puede que no se haya guardado");
+            }
         } catch (SQLException e) {
             throw new MySQLException("Error en SQL", e);
         } finally {
@@ -107,7 +111,7 @@ public class ProductImpDAO implements ProductDAO {
         float price = Float.parseFloat(rs.getString("price"));
         int stock = Integer.parseInt(rs.getString("stock"));
 
-        Product product = new Product(name, description, image, price, stock);
+        Product product = new Product(id,name, description, image, price, stock);
 
         return product;
     }

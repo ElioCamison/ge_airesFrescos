@@ -60,7 +60,6 @@ public class Pressupost {
         }
 
         CompanyImpDAO companyImpDAO = new CompanyImpDAO(con);
-
         try {
             listCompany = companyImpDAO.getAll();
         } catch (MySQLException e) {
@@ -70,6 +69,8 @@ public class Pressupost {
         for(Company lc : listCompany){
             searchCompany.addItem(lc.getName());
         }
+
+
 
         NEWCustomer.addActionListener(new ActionListener() {
             @Override
@@ -129,8 +130,10 @@ public class Pressupost {
                 companyDialog.pack();
                 companyDialog.setVisible(true);
                 if (companyDialog.ok) {
-
+                    listProduc = companyDialog.getProductList();
+                    loadTable();
                 }
+
             }
         });
 
@@ -166,13 +169,15 @@ public class Pressupost {
 
     }
 
-    private void loadTable() {
-        ProductImpDAO productImpDAO = new ProductImpDAO(con);
-        List<Product> listContentItemBudget = new ArrayList();
+    public void loadTable() {
+        //ProductImpDAO productImpDAO = new ProductImpDAO(con);
+        /*List<Product> listContentItemBudget;
         listContentItemBudget = AddItemDialog.productList;
+        System.out.println(listContentItemBudget.toString());*/
         try {
-            listProduc =  productImpDAO.getAll();
-        } catch (MySQLException e) {
+            listProduc = AddItemDialog.productList;
+            System.out.println(listProduc);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -184,10 +189,17 @@ public class Pressupost {
 
             @Override
             public String getColumnName(int i) {
-                if (i == 0) return "Producte";
-                if (i == 1) return "Quantitat";
-                if (i == 2) return "Preu";
-                if (i == 3) return "Total";
+                switch (i) {
+                    case 0 :
+                        return "Producte";
+                    case 1:
+                        return "Quantitat";
+                    case 2:
+                        return "Preu";
+                    case 3:
+                        return "Total";
+
+                }
                 return "";
             }
 
