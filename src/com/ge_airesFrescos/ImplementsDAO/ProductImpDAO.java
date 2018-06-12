@@ -90,6 +90,9 @@ public class ProductImpDAO implements ProductDAO {
             prepStat = conn.getConectar().prepareStatement(DELETE);
             prepStat.setInt(1, p.getId());
             int result = prepStat.executeUpdate();
+            if (result == 0) {
+                throw new MySQLException("Puede que no se haya guardado");
+            }
         } catch (SQLException e) {
             throw new MySQLException("Error en SQL", e);
         } finally {

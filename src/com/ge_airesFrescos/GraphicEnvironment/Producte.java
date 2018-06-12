@@ -1,6 +1,7 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
 import com.ge_airesFrescos.Exceptions.MySQLException;
+import com.ge_airesFrescos.ImplementsDAO.PersonImpDAO;
 import com.ge_airesFrescos.ImplementsDAO.ProductImpDAO;
 import com.ge_airesFrescos.Model.Product;
 import com.ge_airesFrescos.dbb.Conexio;
@@ -48,7 +49,35 @@ public class Producte {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                String name        = fieldName.getText();
+                float price        = Float.parseFloat(fieldPrice.getText());
+                String description = descriptionTextArea.getText();
+                int stock          = (int) stockSpinner.getValue();
 
+                Product product = new Product(name,description,null,price,stock);
+
+                Conexio con = new Conexio();
+                try {
+                    ProductImpDAO productImpDAO1 = new ProductImpDAO(con);
+                    productImpDAO1.insert(product);
+                    loadTable();
+                } catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = tableProducts.getSelectedRow();
+                Product pr = listProduc.get(selected);
+                ProductImpDAO productImpDAO1 = new ProductImpDAO(con);
+                try {
+                    productImpDAO1.delete(pr);
+                    loadTable();
+                } catch (MySQLException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
     }
