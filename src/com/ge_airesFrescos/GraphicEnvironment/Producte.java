@@ -1,6 +1,8 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Producte {
     private JPanel productePanel;
@@ -16,6 +18,15 @@ public class Producte {
     private JTextArea descriptionTextArea;
     private JSpinner stockSpinner;
 
+
+    public Producte() {
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+            }
+        });
+    }
 
     public JPanel getProductePanel() {
         return productePanel;
