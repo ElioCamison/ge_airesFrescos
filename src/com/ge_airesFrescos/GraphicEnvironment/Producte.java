@@ -80,6 +80,20 @@ public class Producte {
                 }
             }
         });
+        modifyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ModifyProductDialog modifyProductDialog = new ModifyProductDialog();
+                modifyProductDialog.setModal(true);
+                modifyProductDialog.pack();
+
+
+
+                int selected = tableProducts.getSelectedRow();
+                //modifyProductDialog.nameField = product.getName();
+
+            }
+        });
     }
 
     private void loadTable() {
