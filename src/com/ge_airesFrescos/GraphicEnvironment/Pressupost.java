@@ -2,10 +2,7 @@ package com.ge_airesFrescos.GraphicEnvironment;
 
 import com.ge_airesFrescos.Exceptions.MySQLException;
 import com.ge_airesFrescos.ImplementsDAO.*;
-import com.ge_airesFrescos.Model.Budget;
-import com.ge_airesFrescos.Model.Company;
-import com.ge_airesFrescos.Model.Person;
-import com.ge_airesFrescos.Model.Product;
+import com.ge_airesFrescos.Model.*;
 import com.ge_airesFrescos.dbb.Conexio;
 
 import javax.swing.*;
@@ -18,7 +15,6 @@ import java.util.List;
 
 public class Pressupost {
 
-    private JTextField textField2;
     private JButton SEARCHButton;
     private JButton NEWCustomer;
     private javax.swing.JMenuBar JMenuBar;
@@ -39,11 +35,14 @@ public class Pressupost {
     private JPanel PamelButtonSaveCancel;
     private JPanel MenuBar;
     private JComboBox searchCustomer;
+    private JComboBox searchCompany;
 
-    public List<Budget>   listBudget    = new ArrayList();
-    public List<Company>  listCompany   = new ArrayList();
-    public List<Person>   listPerson  = new ArrayList();
-    public List<Product>  listProduc    = new ArrayList();
+    public List<Budget>   listBudget     = new ArrayList();
+    public List<Company>  listCompany    = new ArrayList();
+    public List<Person>   listPerson     = new ArrayList();
+    public List<Product>  listProduc     = new ArrayList();
+    public List<Product>  listAddItem    = new ArrayList();
+
     Conexio con = new Conexio();
 
     public Pressupost() {
@@ -58,6 +57,18 @@ public class Pressupost {
 
         for(Person lp : listPerson){
             searchCustomer.addItem(lp.getName());
+        }
+
+        CompanyImpDAO companyImpDAO = new CompanyImpDAO(con);
+
+        try {
+            listCompany = companyImpDAO.getAll();
+        } catch (MySQLException e) {
+            e.printStackTrace();
+        }
+
+        for(Company lc : listCompany){
+            searchCompany.addItem(lc.getName());
         }
 
         NEWCustomer.addActionListener(new ActionListener() {
@@ -107,8 +118,58 @@ public class Pressupost {
 
         /* --------------------------------------------------------- */
 
+        loadTable();
 
+
+        ADDITEMButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                AddItemDialog companyDialog = new AddItemDialog();
+                companyDialog.setModal(true);
+                companyDialog.pack();
+                companyDialog.setVisible(true);
+                if (companyDialog.ok) {
+
+                }
+            }
+        });
+
+        SAVEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                BudgetImpDAO budgetImpDAO = new BudgetImpDAO(con);
+
+
+                try {
+                    listBudget = budgetImpDAO.getAll();
+                } catch (MySQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        DELETEITEMButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = TaulaItems.getSelectedRow();
+                Product pr = listProduc.get(selected);
+                ProductImpDAO productImpDAO1 = new ProductImpDAO(con);
+                try {
+                    productImpDAO1.delete(pr);
+                    loadTable();
+                } catch (MySQLException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+        });
+
+
+    }
+
+    private void loadTable() {
         ProductImpDAO productImpDAO = new ProductImpDAO(con);
+        List<Product> listContentItemBudget = new ArrayList();
+        listContentItemBudget = AddItemDialog.productList;
         try {
             listProduc =  productImpDAO.getAll();
         } catch (MySQLException e) {
@@ -137,53 +198,32 @@ public class Pressupost {
 
             @Override
             public Object getValueAt(int i, int i1) {
-                    Product prod = listProduc.get(i);
-                    switch (i1){
-                        case 0:
-                            return prod.getName();
-                        case 1:
-                            // Afegir a la taula un columna quantitat
-                            return prod.getDescription();
-                        case 2:
-                            return prod.getPrice();
-                        case 3:
-                            return prod.getStock();
-                    }
-                    return null;
+                Product prod = listProduc.get(i);
+                switch (i1){
+                    case 0:
+                        return prod.getName();
+                    case 1:
+                        // Afegir a la taula un columna quantitat
+                        return prod.getDescription();
+                    case 2:
+                        return prod.getPrice();
+                    case 3:
+                        return prod.getStock();
+                }
+                return null;
             }
 
         };
 
 
         TaulaItems.setModel(tm);
-        ADDITEMButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                AddItemDialog companyDialog = new AddItemDialog();
-                companyDialog.setModal(true);
-                companyDialog.pack();
-                companyDialog.setVisible(true);
-                if (companyDialog.ok) {
-
-                }
-            }
-        });
-
-        SAVEButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                BudgetImpDAO budgetImpDAO = new BudgetImpDAO(con);
-
-                try {
-                    listBudget = budgetImpDAO.getAll();
-                } catch (MySQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     public void setJMenuBar(JMenuBar JMenuBar) {
         this.JMenuBar = JMenuBar;
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

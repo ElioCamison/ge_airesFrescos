@@ -15,7 +15,7 @@ import java.util.List;
 public class CompanyImpDAO implements CompanyDAO {
 
     final String INSERT = "INSERT INTO empresa(name, address) VALUES(?, ?)";
-    final String UPDATE = "UPDATE empresa SET nom = ?";
+    final String UPDATE = "UPDATE empresa SET name = ?";
     final String DELETE = "DELETE FROM empresa WHERE id = ?";
     final String GETALL = "SELECT * FROM empresa";
     final String GETONE = "SELECT * FROM empresa WHERE id = ?";
@@ -92,7 +92,7 @@ public class CompanyImpDAO implements CompanyDAO {
     }
 
     private Company convert(ResultSet rs) throws SQLException {
-        String name = rs.getString("nom");
+        String name = rs.getString("name");
         String address = rs.getString("address");
         Company company = new Company(name,address);
         return company;

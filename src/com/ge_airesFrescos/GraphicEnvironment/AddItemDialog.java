@@ -15,11 +15,13 @@ public class AddItemDialog extends JDialog {
     private JPanel addItemPanel;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JComboBox comboboxNameItem;
+    public JComboBox comboboxNameItem;
     private JSpinner QuantitatSpinner;
     private JLabel quantitatLabel;
     private JPanel nameLabel;
     public boolean ok = false;
+    public static List<Product> productList = new ArrayList();
+
     Conexio con = new Conexio();
     public List<Product> listProduc    = new ArrayList();
 
@@ -74,6 +76,13 @@ public class AddItemDialog extends JDialog {
 
 
     private void onOK() {
+        int valueItem = comboboxNameItem.getSelectedIndex();
+        ProductImpDAO productImpDAO = new ProductImpDAO(con);
+        try {
+            productList.add(productImpDAO.getOne(valueItem));
+        } catch (MySQLException e) {
+            e.printStackTrace();
+        }
         ok = true;
         dispose();
     }
