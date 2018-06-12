@@ -142,12 +142,36 @@ public class Pressupost {
             public void actionPerformed(ActionEvent actionEvent) {
                 BudgetImpDAO budgetImpDAO = new BudgetImpDAO(con);
 
+                // Customer
+                int selectedCustomer = searchCustomer.getSelectedIndex();
+                Person person = listPerson.get(selectedCustomer);
+                PersonImpDAO personImpDAO1 = new PersonImpDAO(con);
+
+                // Company
+                int selectedCompany = searchCompany.getSelectedIndex();
+                Company company = listCompany.get(selectedCompany);
+                CompanyImpDAO companyImpDAO1 = new CompanyImpDAO(con);
 
                 try {
+                  listPerson = (List<Person>) personImpDAO1.getOne(selectedCustomer);
+                  listCompany = (List<Company>) companyImpDAO1.getOne(selectedCompany);
+
+                  Budget budget = new Budget(1,1,company.getId(),person.getId(),(float)3.000,null,null);
+                  budgetImpDAO.insert(budget);
+
+
+
+                } catch (MySQLException e1) {
+                    e1.printStackTrace();
+                }
+
+
+
+                /*try {
                     listBudget = budgetImpDAO.getAll();
                 } catch (MySQLException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         });
         DELETEITEMButton.addActionListener(new ActionListener() {
@@ -170,13 +194,8 @@ public class Pressupost {
     }
 
     public void loadTable() {
-        //ProductImpDAO productImpDAO = new ProductImpDAO(con);
-        /*List<Product> listContentItemBudget;
-        listContentItemBudget = AddItemDialog.productList;
-        System.out.println(listContentItemBudget.toString());*/
         try {
             listProduc = AddItemDialog.productList;
-            System.out.println(listProduc);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,8 +14,8 @@ public class BudgetImpDAO implements BudgetDAO {
 
     // Les fetxes a Java empram un String, però a MySQL un datetime, probablemnt sorgeixin error... :S
 
-    final String INSERT = "INSERT INTO pressupost(id_producte, id_treballador, id_empresa, id_client, total, data, observacions) VALUES(?, ?, ?, ?, ?, ?, ?)";
-    final String UPDATE = "UPDATE pressupost SET id_producte = ?, id_treballador = ?, id_empresa = ?, id_client = ?, total = ?, data = ?, observacions = ? WHERE id = ?";
+    final String INSERT = "INSERT INTO pressupost( id_treballador, id_empresa, id_client, total, data, observacions) VALUES( ?, ?, ?, ?, ?, ?)";
+    final String UPDATE = "UPDATE pressupost SET id_treballador = ?, id_empresa = ?, id_client = ?, total = ?, data = ?, observacions = ? WHERE id = ?";
     final String DELETE = "DELETE FROM pressupost WHERE id = ?";
     final String GETALL = "SELECT * FROM pressupost";
     final String GETONE = "SELECT * FROM pressupost WHERE id = ?";
@@ -33,13 +33,12 @@ public class BudgetImpDAO implements BudgetDAO {
         PreparedStatement prepStat = null;
         try {
             prepStat = conn.getConectar().prepareStatement(INSERT);
-            prepStat.setInt(1, p.getId_producte());
-            prepStat.setInt(2, p.getId_treballador());
-            prepStat.setInt(3, p.getId_empresa());
-            prepStat.setInt(4, p.getId_client());
-            prepStat.setFloat(5, p.getTotal());
-            prepStat.setString(6, p.getData());
-            prepStat.setString(7, p.getObservacions());
+            prepStat.setInt(1, p.getId_treballador());
+            prepStat.setInt(2, p.getId_empresa());
+            prepStat.setInt(3, p.getId_client());
+            prepStat.setFloat(4, p.getTotal());
+            prepStat.setString(5, p.getData());
+            prepStat.setString(6, p.getObservacions());
             int result = prepStat.executeUpdate();
             if (result == 0) {
                 throw new MySQLException("Puede que no se haya guardado");
@@ -62,7 +61,6 @@ public class BudgetImpDAO implements BudgetDAO {
         PreparedStatement prepStat = null;
         try {
             prepStat = conn.getConectar().prepareStatement(UPDATE);
-            prepStat.setInt(1, p.getId_producte());
             prepStat.setInt(2, p.getId_treballador());
             prepStat.setInt(3, p.getId_empresa());
             prepStat.setInt(4, p.getId_client());
@@ -70,6 +68,10 @@ public class BudgetImpDAO implements BudgetDAO {
             prepStat.setString(6, p.getData());
             prepStat.setString(7, p.getObservacions());
             prepStat.setInt(8, p.getId());
+            int result = prepStat.executeUpdate();
+            if (result == 0) {
+                throw new MySQLException("Puede que no se haya guardado");
+            }
         } catch (SQLException e) {
             throw new MySQLException("Error en SQL", e);
         } finally {
@@ -104,14 +106,14 @@ public class BudgetImpDAO implements BudgetDAO {
 
 
     private Budget convert(ResultSet rs) throws SQLException {
-        int id_producte = Integer.parseInt(rs.getString("id_producte"));
+        int id = Integer.parseInt(rs.getString("id"));
         int id_treballador = Integer.parseInt(rs.getString("id_treballador"));
         int id_empresa = Integer.parseInt(rs.getString("id_empresa"));
         int id_client = Integer.parseInt(rs.getString("id_client"));
         float total = Float.parseFloat(rs.getString("total"));
         String data = rs.getString("data");
         String observacions = rs.getString("observacions");
-        Budget budget = new Budget(id_producte, id_treballador, id_empresa, id_client, total, data, observacions);
+        Budget budget = new Budget(id,id_treballador, id_empresa, id_client, total, data, observacions);
         return budget;
     }
 
