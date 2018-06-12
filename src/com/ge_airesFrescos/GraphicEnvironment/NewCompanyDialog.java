@@ -14,8 +14,6 @@ public class NewCompanyDialog extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JPanel PanelNewCompany;
-    private JButton NameCompany;
-    private JButton AdressCompany;
 
     public JTextField getFieldNameCompany() {
         return fieldNameCompany;
@@ -27,6 +25,8 @@ public class NewCompanyDialog extends JDialog {
 
     private JTextField fieldNameCompany;
     private JTextField fieldAdressCompany;
+    private JLabel nameLabel;
+    private JLabel addressLabel;
 
     public NewCompanyDialog() {
         setContentPane(contentPane);

@@ -1,7 +1,15 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
+import com.ge_airesFrescos.Exceptions.MySQLException;
+import com.ge_airesFrescos.ImplementsDAO.ProductImpDAO;
+import com.ge_airesFrescos.Model.Person;
+import com.ge_airesFrescos.Model.Product;
+import com.ge_airesFrescos.dbb.Conexio;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddItemDialog extends JDialog {
     private JPanel addItemPanel;
@@ -12,6 +20,8 @@ public class AddItemDialog extends JDialog {
     private JLabel quantitatLabel;
     private JPanel nameLabel;
     public boolean ok = false;
+    Conexio con = new Conexio();
+    public List<Product> listProduc    = new ArrayList();
 
     public AddItemDialog() {
         setContentPane(addItemPanel);
@@ -44,7 +54,24 @@ public class AddItemDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+
+        ProductImpDAO productImpDAO = new ProductImpDAO(con);
+        try {
+            listProduc =  productImpDAO.getAll();
+        } catch (MySQLException e) {
+            e.printStackTrace();
+        }
+
+        for(Product lp : listProduc){
+            comboboxNameItem.addItem(lp.getName());
+        }
+
     }
+
+
+
+
 
     private void onOK() {
         ok = true;

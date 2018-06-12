@@ -2,6 +2,8 @@ package com.ge_airesFrescos.GraphicEnvironment;
 
 import com.ge_airesFrescos.Exceptions.MySQLException;
 import com.ge_airesFrescos.ImplementsDAO.*;
+import com.ge_airesFrescos.Model.Budget;
+import com.ge_airesFrescos.Model.Company;
 import com.ge_airesFrescos.Model.Person;
 import com.ge_airesFrescos.Model.Product;
 import com.ge_airesFrescos.dbb.Conexio;
@@ -38,8 +40,8 @@ public class Pressupost {
     private JPanel MenuBar;
     private JComboBox searchCustomer;
 
-    public List<BudgetImpDAO>   listBudget    = new ArrayList();
-    public List<CompanyImpDAO>  listCompany   = new ArrayList();
+    public List<Budget>   listBudget    = new ArrayList();
+    public List<Company>  listCompany   = new ArrayList();
     public List<Person>   listPerson  = new ArrayList();
     public List<Product>  listProduc    = new ArrayList();
     Conexio con = new Conexio();
@@ -116,7 +118,7 @@ public class Pressupost {
         TableModel tm = new AbstractTableModel() {
             @Override
             public int getRowCount() {
-                return 2;
+                return listProduc.size();
             }
 
             @Override
@@ -130,19 +132,28 @@ public class Pressupost {
 
             @Override
             public int getColumnCount() {
-
                 return 4;
             }
 
-
-
-
             @Override
             public Object getValueAt(int i, int i1) {
-
-                return "a";
+                    Product prod = listProduc.get(i);
+                    switch (i1){
+                        case 0:
+                            return prod.getName();
+                        case 1:
+                            // Afegir a la taula un columna quantitat
+                            return prod.getDescription();
+                        case 2:
+                            return prod.getPrice();
+                        case 3:
+                            return prod.getStock();
+                    }
+                    return null;
             }
+
         };
+
 
         TaulaItems.setModel(tm);
         ADDITEMButton.addActionListener(new ActionListener() {
@@ -158,6 +169,18 @@ public class Pressupost {
             }
         });
 
+        SAVEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                BudgetImpDAO budgetImpDAO = new BudgetImpDAO(con);
+
+                try {
+                    listBudget = budgetImpDAO.getAll();
+                } catch (MySQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void setJMenuBar(JMenuBar JMenuBar) {
