@@ -59,6 +59,10 @@ public class CompanyImpDAO implements CompanyDAO {
             prepStat = conn.getConectar().prepareStatement(UPDATE);
             prepStat.setString(1, p.getName());
             prepStat.setString(2, p.getAddress());
+            int result = prepStat.executeUpdate();
+            if (result == 0) {
+                throw new MySQLException("Puede que no se haya guardado");
+            }
         } catch (SQLException e) {
             throw new MySQLException("Error en SQL", e);
         } finally {
@@ -78,6 +82,10 @@ public class CompanyImpDAO implements CompanyDAO {
         try {
             prepStat = conn.getConectar().prepareStatement(DELETE);
             prepStat.setInt(1, p.getId());
+            int result = prepStat.executeUpdate();
+            if (result == 0) {
+                throw new MySQLException("Puede que no se haya guardado");
+            }
         } catch (SQLException e) {
             throw new MySQLException("Error en SQL", e);
         } finally {
@@ -92,9 +100,10 @@ public class CompanyImpDAO implements CompanyDAO {
     }
 
     private Company convert(ResultSet rs) throws SQLException {
+        int id = Integer.parseInt(rs.getString("id"));
         String name = rs.getString("name");
         String address = rs.getString("address");
-        Company company = new Company(name,address);
+        Company company = new Company(id,name,address);
         return company;
     }
 

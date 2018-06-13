@@ -104,6 +104,7 @@ public class PersonImpDAO implements PersonDAO {
     }
 
     private Person convert(ResultSet rs) throws SQLException {
+        int id = Integer.parseInt(rs.getString("id"));
         String name = rs.getString("name");
         String surname = rs.getString("surname");
         String address = rs.getString("address");
@@ -113,7 +114,7 @@ public class PersonImpDAO implements PersonDAO {
         String user = rs.getString("user");
         String type = rs.getString("type");
 
-        Person person = new Person(name,surname,address,telephone,email,password,user,type);
+        Person person = new Person(id,name,surname,address,telephone,email,password,user,type);
         return person;
     }
 

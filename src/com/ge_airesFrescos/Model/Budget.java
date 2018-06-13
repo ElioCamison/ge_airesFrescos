@@ -5,7 +5,6 @@ package com.ge_airesFrescos.Model;
 public class Budget {
 
     private int id;
-
     private int id_treballador;
     private int id_empresa;
     private int id_client;

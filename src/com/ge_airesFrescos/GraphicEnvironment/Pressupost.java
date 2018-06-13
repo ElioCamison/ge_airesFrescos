@@ -1,5 +1,6 @@
 package com.ge_airesFrescos.GraphicEnvironment;
 
+import com.ge_airesFrescos.DAO.BudgetHasProductDAO;
 import com.ge_airesFrescos.Exceptions.MySQLException;
 import com.ge_airesFrescos.ImplementsDAO.*;
 import com.ge_airesFrescos.Model.*;
@@ -143,35 +144,31 @@ public class Pressupost {
                 BudgetImpDAO budgetImpDAO = new BudgetImpDAO(con);
 
                 // Customer
-                int selectedCustomer = searchCustomer.getSelectedIndex();
-                Person person = listPerson.get(selectedCustomer);
+                int selectedCustomer = searchCustomer.getSelectedIndex()+1;
                 PersonImpDAO personImpDAO1 = new PersonImpDAO(con);
 
                 // Company
-                int selectedCompany = searchCompany.getSelectedIndex();
-                Company company = listCompany.get(selectedCompany);
+                int selectedCompany = searchCompany.getSelectedIndex()+1;
                 CompanyImpDAO companyImpDAO1 = new CompanyImpDAO(con);
 
-                try {
-                  listPerson = (List<Person>) personImpDAO1.getOne(selectedCustomer);
-                  listCompany = (List<Company>) companyImpDAO1.getOne(selectedCompany);
+                String observation = textArea1.getText();
 
-                  Budget budget = new Budget(1,1,company.getId(),person.getId(),(float)3.000,null,null);
+                int selectedItem = TaulaItems.getSelectedRow();
+
+                BudgetHasProductImpDAO budgetHasProductDAO = new BudgetHasProductImpDAO(con);
+
+
+                try {
+                  Budget budget = new Budget(1,companyImpDAO1.getOne(selectedCompany).getId(),personImpDAO1.getOne(selectedCustomer).getId(),(float)3.000,null,observation);
                   budgetImpDAO.insert(budget);
 
-
+                  BudgetHasProduct budgetHasProduct = new BudgetHasProduct(listProduc.get(selectedItem).getId(), budget.getId());
+                  budgetHasProductDAO.insert(budgetHasProduct);
 
                 } catch (MySQLException e1) {
                     e1.printStackTrace();
                 }
 
-
-
-                /*try {
-                    listBudget = budgetImpDAO.getAll();
-                } catch (MySQLException e) {
-                    e.printStackTrace();
-                }*/
             }
         });
         DELETEITEMButton.addActionListener(new ActionListener() {
