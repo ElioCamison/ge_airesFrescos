@@ -153,7 +153,8 @@ public class Pressupost {
 
                 String observation = textArea1.getText();
 
-                int selectedItem = TaulaItems.getSelectedRow();
+                int selectedItem = TaulaItems.getSelectedRow()+1;
+                Product product = listProduc.get(selectedItem);
 
                 BudgetHasProductImpDAO budgetHasProductDAO = new BudgetHasProductImpDAO(con);
 
@@ -162,8 +163,9 @@ public class Pressupost {
                   Budget budget = new Budget(1,companyImpDAO1.getOne(selectedCompany).getId(),personImpDAO1.getOne(selectedCustomer).getId(),(float)3.000,null,observation);
                   budgetImpDAO.insert(budget);
 
-                  BudgetHasProduct budgetHasProduct = new BudgetHasProduct(listProduc.get(selectedItem).getId(), budget.getId());
+                  BudgetHasProduct budgetHasProduct = new BudgetHasProduct(product.getId(), budget.getId());
                   budgetHasProductDAO.insert(budgetHasProduct);
+
 
                 } catch (MySQLException e1) {
                     e1.printStackTrace();
