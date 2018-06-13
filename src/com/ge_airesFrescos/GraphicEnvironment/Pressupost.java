@@ -43,6 +43,7 @@ public class Pressupost {
     public List<Person>   listPerson     = new ArrayList();
     public List<Product>  listProduc     = new ArrayList();
     public List<Product>  listAddItem    = new ArrayList();
+    public List<BudgetHasProduct>  listBudgetHasProduct    = new ArrayList();
 
     Conexio con = new Conexio();
 
@@ -134,7 +135,6 @@ public class Pressupost {
                     listProduc = companyDialog.getProductList();
                     loadTable();
                 }
-
             }
         });
 
@@ -144,12 +144,12 @@ public class Pressupost {
                 BudgetImpDAO budgetImpDAO = new BudgetImpDAO(con);
 
                 // Customer
-                int selectedCustomer = searchCustomer.getSelectedIndex()+1;
-                PersonImpDAO personImpDAO1 = new PersonImpDAO(con);
+                int selectedCustomer = searchCustomer.getSelectedIndex();
+                Person person = listPerson.get(selectedCustomer);
 
                 // Company
-                int selectedCompany = searchCompany.getSelectedIndex()+1;
-                CompanyImpDAO companyImpDAO1 = new CompanyImpDAO(con);
+                int selectedCompany = searchCompany.getSelectedIndex();
+                Company company = listCompany.get(selectedCompany);
 
                 String observation = textArea1.getText();
 
@@ -162,7 +162,7 @@ public class Pressupost {
 
 
                 try {
-                    Budget budget = new Budget(1,companyImpDAO1.getOne(selectedCompany).getId(),personImpDAO1.getOne(selectedCustomer).getId(),(float)3.000,null,observation);
+                    Budget budget = new Budget(1,company.getId(),person.getId(),(float)3.000,null,observation);
                     budgetImpDAO.insert(budget);
 
                     BudgetHasProduct budgetHasProduct = new BudgetHasProduct(product.getId(), budget.getId());
@@ -192,8 +192,6 @@ public class Pressupost {
 
             }
         });
-
-
     }
 
     public void loadTable() {
