@@ -181,6 +181,7 @@ public class Pressupost {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = TaulaItems.getSelectedRow();
+                System.out.println(selected);
                 Product pr = listProduc.get(selected);
                 ProductImpDAO productImpDAO1 = new ProductImpDAO(con);
                 try {
