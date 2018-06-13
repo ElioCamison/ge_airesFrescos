@@ -2,7 +2,6 @@ package com.ge_airesFrescos.ImplementsDAO;
 
 import com.ge_airesFrescos.DAO.ProductDAO;
 import com.ge_airesFrescos.Exceptions.MySQLException;
-import com.ge_airesFrescos.Model.Budget;
 import com.ge_airesFrescos.Model.Product;
 import com.ge_airesFrescos.dbb.Conexio;
 
